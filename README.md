@@ -7,3 +7,5 @@ This reporsitory contains the codes based on BerkeleyGW/1.2.0 to expand unit cel
 and summation of the supercell chi.
 
 For instructions see NOTE.
+
+Author: Xuan Fengyuan (c2dxf@nus.edu.sg)
