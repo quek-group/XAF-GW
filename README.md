@@ -16,6 +16,10 @@ The code provided here is based on BerkeleyGW/1.2.0, and routines for reading th
 The BerkeleyGW/1.2.0 code is licensed under licensed under a free, open source, and permissive 3-clause modified BSD license.
 BerkeleyGW, Copyright (c) 2011, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.
 
-Work done for this code was performed in the National University of Singapore (NUS). 
+Work done for this code was performed in the National University of Singapore (NUS). We ask that users of the XAF-GW method or of this code should cite the following reference:
+
+arXiv:1903.01847 [cond-mat.mtrl-sci]
+
+If the BerkeleyGW code is used in conjunction with the XAF-GW method, please also cite the appropriate references for the BerkeleyGW code.
 
 Author: Xuan Fengyuan (c2dxf@nus.edu.sg)
