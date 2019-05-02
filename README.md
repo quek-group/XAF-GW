@@ -1,11 +1,21 @@
 # XAF-GW
-The high computational cost of GW calculation for large 2D interface system is partially due to the polarizability(chi) matrix calculation.
-We first cut the total system into layers and then cut each layer into unit cell. In Reference: JCTC we demonstrate that the total 
-chi matrix can be written as the sum of each layer's chi matrix. Each layer's chi in a super cell can be expanded from it unit cell.
+The XAF-GW method enables GW calculations of large interface systems which can be separated into individual components without the formation of dangling bonds. However, the XAF-GW method can apply to layered systems with hybridization between the components, such as in the case of black phosphorus. 
 
-This reporsitory contains the codes based on BerkeleyGW/1.2.0 to expand unit cell chi matrix to supercell 
-and summation of the supercell chi.
+XAF-GW stands for:
 
-For instructions see NOTE.
+eXpand-chi
+Add-chi
+Full-sigma
+
+The Add-chi method computes the chi matrix for the heterostructure (HS) as the sum of the chi matrices from individual components. This is shown to work even when bonding and anti-bonding states form between the separate components (JCTC).
+
+The eXpand-chi method obtains the chi matrix of the supercell from the chi matrix of a unit cell.
+
+The code provided here is based on BerkeleyGW/1.2.0, and routines for reading the chi matrices have been obtained from the BerkeleyGW code. However, this code is general and can be easily modified for other GW codes.
+
+The BerkeleyGW/1.2.0 code is licensed under licensed under a free, open source, and permissive 3-clause modified BSD license.
+BerkeleyGW, Copyright (c) 2011, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.
+
+Work done for this code was performed in the National University of Singapore (NUS). 
 
 Author: Xuan Fengyuan (c2dxf@nus.edu.sg)
