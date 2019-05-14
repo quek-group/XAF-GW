@@ -1,0 +1,4 @@
+ln -snf ../QE-bz/04-wfn/wfn.complex WFN
+ln -snf ../QE-bz/03-wfnq/wfn.complex WFNq
+ln -snf ../addchi/chi0mat_add chi0mat
+ln -snf ../addchi/chimat_add chimat
