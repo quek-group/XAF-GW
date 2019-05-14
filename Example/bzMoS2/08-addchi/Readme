@@ -1,0 +1,5 @@
+ln -snf ../07-addchi/eps0mat eps0mat
+ln -snf ../07-addchi/epsmat epsmat
+ln -snf ../QE/04-wfn/rho.real RHO
+ln -snf ../QE/04-wfn/VXC VXC
+ln -snf ../QE/04-wfn/wfn.complex WFN_inner
