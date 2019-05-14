@@ -1,0 +1,2 @@
+ln -snf ../QE-MoS2/04-wfn_co/wfn.complex WFN
+ln -snf ../QE-MoS2/03-wfnq/wfn.complex WFNq
