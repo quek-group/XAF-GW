@@ -1,0 +1,11 @@
+Example benzene on MoS2 (3x3 supercell)
+instructrions for each folder:
+QE-bz for mono layer of benzene molecule in supercell
+QE-MoS2 for unit cell MoS2
+QE for the full system
+06-bz: calculate chi matrix for bz layer (supercell)
+06-MoS2: calculate chi matrix for MoS2 (unit cell)
+expandchi: expand the chi matrix of MoS2 from unit cell to 3 x 3 supercell
+addchi: add the chi matrix of bz and MoS2 together in supercell 
+07-addchi: get the epsilon matrix using the added chi matrix
+08-addchi: use full system wavefunction for WFN_inner to calculate bz HOMO LUMO gap with addchi epsilon matrix.
