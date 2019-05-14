@@ -3,5 +3,6 @@ ln -snf ../06-MoS2/chi0mat chi0mat1x1
 ln -snf ../06-bz/chi0mat chi0mat_exactmxm
 ln -snf ../06-MoS2/chimat chimat1x1
 ln -snf ../06-bz/chimat chimat_exactmxm
+(change p q to 6 and m to 3 in expandchi.f90 and compile it)
 ifort expandchi.f90 -o expandchi.x
 ./expandchi.x > out 
