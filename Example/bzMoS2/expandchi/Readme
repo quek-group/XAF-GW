@@ -1,1 +1,7 @@
-expandchi
+expandchi:
+ln -snf ../06-MoS2/chi0mat chi0mat1x1
+ln -snf ../06-bz/chi0mat chi0mat_exactmxm
+ln -snf ../06-MoS2/chimat chimat1x1
+ln -snf ../06-bz/chimat chimat_exactmxm
+ifort expandchi.f90 -o expandchi.x
+./expandchi.x > out 
