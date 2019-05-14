@@ -1,0 +1,45 @@
+&control
+   prefix = 'slab'
+   calculation = 'scf'
+   verbosity = 'high'
+   restart_mode = 'from_scratch'
+   wf_collect = .true.
+   tstress = .false.
+   tprnfor = .false.
+   outdir = './'
+   pseudo_dir = './'
+/
+&system
+  ibrav = 0
+  nat = 12
+  ntyp = 2
+  nbnd = 30
+  ecutwfc = 60 
+/
+&electrons
+  conv_thr = 1.d-8
+  mixing_beta = 0.7d0
+  diagonalization = 'david'
+/
+ATOMIC_SPECIES
+  H  1.00800   H.UPF
+  C  12.01100  C.UPF
+ATOMIC_POSITIONS angstrom
+C       0.373149256     5.262173417     14.026299039
+C       1.581249256     5.959673417     14.026299039
+C       2.789349256     5.262173417     14.026299039
+C       2.789349256     3.867173417     14.026299039
+C       1.581249256     3.169673417     14.026299039
+C       0.373149256     3.867173417     14.026299039
+H       -0.570850744    5.807173417     14.026299039
+H       1.581249256     7.049673417     14.026299039
+H       3.733349256     5.807173417     14.026299039
+H       3.733349256     3.322173417     14.026299039
+H       1.581249256     2.079673417     14.026299039
+H       -0.570850744    3.322173417     14.026299039
+K_POINTS automatic
+ 12 12  1 0 0 0
+CELL_PARAMETERS angstrom
+9.487495536     0.000000000     0.000000000
+-4.743747768    8.216412153     0.000000000
+0.000000000     0.000000000     21.383354839
