@@ -1,6 +1,6 @@
 epsilon_cutoff 16
 
-number_bands 700
+number_bands 320
 
 cell_slab_truncation
 
