@@ -1,0 +1,21 @@
+&input_pw2bgw
+   prefix = 'slab'
+   real_or_complex = 2
+   wfng_flag = .true.
+   wfng_file = 'wfn.complex'
+   wfng_kgrid = .true.
+   wfng_nk1 = 6
+   wfng_nk2 = 6
+   wfng_nk3 = 1
+   wfng_dk1 = 0.0
+   wfng_dk2 = 0.0
+   wfng_dk3 = 0.0
+   rhog_flag = .true.
+   rhog_file = 'rho.real'
+   vxcg_flag = .true.
+   vxcg_file = 'VXC'
+   vxc_flag = .true.
+   vxc_file = 'vxc.dat'
+   vxc_diag_nmin = 1
+   vxc_diag_nmax = 30
+/
