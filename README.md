@@ -23,3 +23,4 @@ arXiv:1903.01847 [cond-mat.mtrl-sci]
 If the BerkeleyGW code is used in conjunction with the XAF-GW method, please also cite the appropriate references for the BerkeleyGW code.
 
 Author: Xuan Fengyuan (c2dxf@nus.edu.sg)
+Contact: Su Ying Quek (phyqsy@nus.edu.sg) 
