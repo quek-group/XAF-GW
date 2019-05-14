@@ -1,4 +1,4 @@
-Example benzene on MoS2 (3x3 supercell)
+Example: calculation of HOMO LUMO gap of benzene on MoS2 (3x3 supercell)
 instructrions for each folder (run the code in the following order):
 QE-bz for mono layer of benzene molecule in supercell
 QE-MoS2 for unit cell MoS2
@@ -8,4 +8,5 @@ QE for the full system
 expandchi: expand the chi matrix of MoS2 from unit cell to 3 x 3 supercell
 addchi: add the chi matrix of bz and MoS2 together in supercell 
 07-addchi: get the epsilon matrix using the added chi matrix
-08-addchi: use full system wavefunction for WFN_inner to calculate bz HOMO LUMO gap with addchi epsilon matrix.
+08-addchi: use full system wavefunction for WFN_inner to calculate bz HOMO LUMO gap with addchi epsilon matrix. (The corresponding
+HOMO LUMO band index in full system can be obtained by wfn_dotproduct.x from BerkeleyGW package.)
