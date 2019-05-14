@@ -1,0 +1,11 @@
+addchi:
+ln -snf ../06-bz/chi0mat chi0mat_bn
+ln -snf ../06-bz/chi0mat chi0mat_bnG
+ln -snf ../mxn-pxq/chi0mat_expandmxm chi0mat_G
+ln -snf ../06-bz/chimat chimat_bn
+ln -snf ../06-bz/chimat chimat_bnG
+ln -snf ../mxn-pxq/chimat_expandmxm chimat_G
+ifort addchi0.f90 -o addchi0.x
+ifort addchi.f90 -o addchi.x
+./addchi0.x > out0
+./addchi.x < in > out
