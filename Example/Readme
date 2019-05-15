@@ -1,8 +1,9 @@
 Example: calculation of HOMO LUMO gap of benzene on MoS2 (3x3 supercell)
-instructrions for each folder (run the code in the following order):
+Instructrions for each folder (run the code in the following order):
 QE-bz for mono layer of benzene molecule in supercell
 QE-MoS2 for unit cell MoS2
 QE for the full system
+(The pseudopotential for the above QuantumESPRESSO calculation are not included.)
 06-bz: calculate chi matrix for bz layer (supercell)
 06-MoS2: calculate chi matrix for MoS2 (unit cell)
 expandchi: expand the chi matrix of MoS2 from unit cell to 3 x 3 supercell
