@@ -3,3 +3,5 @@ ln -snf ../07-addchi/epsmat epsmat
 ln -snf ../QE/04-wfn/rho.real RHO
 ln -snf ../QE/04-wfn/VXC VXC
 ln -snf ../QE/04-wfn/wfn.complex WFN_inner
+The band index 128 129 correspond to HOMO of BZ molecule.
+               167 168               LUMO
