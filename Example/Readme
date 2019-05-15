@@ -3,7 +3,13 @@ Instructions for each folder (run the code in the following order):
 QE-bz for mono layer of benzene molecule in supercell
 QE-MoS2 for unit cell MoS2
 QE for the full system
-(The pseudopotentials for the above QuantumESPRESSO calculations are not included.)
+(The pseudopotentials for the above QuantumESPRESSO calculations are not included. 
+to compare with the results in 08-addchi one can download the pseudopotentials on :
+http://www.quantum-simulation.org/potentials/sg15_oncv/
+Mo_ONCV_PBE-1.0.upf
+S_ONCV_PBE-1.0.upf
+C_ONCV_PBE-1.0.upf
+H_ONCV_PBE-1.0.upf)
 06-bz: calculate chi matrix for bz layer (supercell)
 06-MoS2: calculate chi matrix for MoS2 (unit cell)
 expandchi: expand the chi matrix of MoS2 from unit cell to 3 x 3 supercell
