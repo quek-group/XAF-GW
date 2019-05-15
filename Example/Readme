@@ -6,14 +6,17 @@ QE for the full system
 (The pseudopotentials for the above QuantumESPRESSO calculations are not included. 
 to compare with the results in 08-addchi one can download the pseudopotentials on :
 http://www.quantum-simulation.org/potentials/sg15_oncv/
-Mo_ONCV_PBE-1.0.upf
-S_ONCV_PBE-1.0.upf
-C_ONCV_PBE-1.0.upf
-H_ONCV_PBE-1.0.upf)
+Mo_ONCV_PBE-1.0.upf     14-electron
+S_ONCV_PBE-1.0.upf       6-electron
+C_ONCV_PBE-1.0.upf       4-electron
+H_ONCV_PBE-1.0.upf       1-electron)
 06-bz: calculate chi matrix for bz layer (supercell)
-06-MoS2: calculate chi matrix for MoS2 (unit cell)
+06-MoS2: calculate chi matrix for MoS2 (unit cell). Accuracy of the cell parameters should be higher than 9 digits to be consistent
+         with the supercell cell parameters.
 expandchi: expand the chi matrix of MoS2 from unit cell to 3 x 3 supercell
 addchi: add the chi matrix of bz and MoS2 together in supercell 
 07-addchi: get the epsilon matrix using the added chi matrix
 08-addchi: use full system wavefunction for WFN_inner to calculate bz HOMO LUMO gap with addchi epsilon matrix. (The corresponding
-HOMO LUMO band index in full system can be obtained by wfn_dotproduct.x from BerkeleyGW package.)
+HOMO LUMO band index in full system can be obtained by wfn_dotproduct.x from BerkeleyGW package. Using the pseudopotential in the
+above link, bz molecule has to two degenerate HOMO (bands index 14 15) and two degenerate LUMO (bands index 16 17). The maximium 
+overlap of full system wavefunction with the molecular HOMO LUMO is defined to be the HOMO LUMO level of the full system.)
