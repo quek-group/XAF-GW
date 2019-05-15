@@ -1,2 +1,5 @@
 ln -snf ../QE-MoS2/04-wfn_co/wfn.complex WFN
 ln -snf ../QE-MoS2/03-wfnq/wfn.complex WFNq
+This example include 700 bands (see epsilon.inp) for unit cell MoS2, 
+which can be increased according to convergence requirement.
+700 bands in unit cell is equivalent to 700x9=6300 bands in the 3x3 super cell.
