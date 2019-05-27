@@ -16,7 +16,7 @@ H_ONCV_PBE-1.0.upf       1-electron)
 expandchi: expand the chi matrix of MoS2 from unit cell to 3 x 3 supercell
 addchi: add the chi matrix of bz and MoS2 together in supercell 
 07-addchi: get the epsilon matrix using the added chi matrix
-08-addchi: use full system wavefunction for WFN_inner to calculate bz HOMO LUMO gap with addchi epsilon matrix. (The corresponding
+08-fullsigma: use full system wavefunction for WFN_inner to calculate bz HOMO LUMO gap with addchi epsilon matrix. (The corresponding
 HOMO LUMO band index in full system can be obtained by wfn_dotproduct.x from BerkeleyGW package. Using the pseudopotential in the
 above link, bz molecule has to two degenerate HOMO (bands index 14 15) and two degenerate LUMO (bands index 16 17). The maximium 
 overlap of full system wavefunction with the molecular HOMO LUMO is defined to be the HOMO LUMO level of the full system.)
