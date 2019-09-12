@@ -1,0 +1,54 @@
+&control
+   prefix = 'BPbl'
+   calculation = 'scf'
+   restart_mode = 'from_scratch'
+!   restart_mode = 'restart'
+   wf_collect = .true.
+   tstress = .true.
+   tprnfor = .true.
+   outdir = './'
+!   wfcdir = './outputs'
+   pseudo_dir = './'
+   nstep = 2000
+   etot_conv_thr=1.0D-5
+   forc_conv_thr=1.0D-4
+/
+&system
+   ibrav = 0
+   celldm(1) = 1.889726125
+   nat = 8
+   ntyp = 1
+   ecutwfc = 55.0
+   ecutrho = 300.0
+   occupations='smearing'
+   degauss=0.01D0
+   smearing='mp'
+   vdw_corr = 'Grimme-D2'
+/
+&electrons
+   electron_maxstep = 200
+   conv_thr = 1.0d-8
+   mixing_mode = 'plain'
+   mixing_beta = 0.2
+!   mixing_ndim = 8
+   diagonalization = 'david'
+!   diago_david_ndim = 4
+!   diago_full_acc = .true.
+/
+CELL_PARAMETERS {alat}
+   4.504802668   0.000000000   0.000070861
+   0.000000000   3.311879756   0.000000000
+   0.000168958   0.000000000  21.500000000
+ATOMIC_SPECIES
+   P    30.974   P.pbe-mt_fhi.UPF
+ATOMIC_POSITIONS  angstrom
+P        0.377605904   0.001511763   5.701591620
+P       -0.390412225   0.001523297   3.577514157
+P        1.864708279   1.657310498   5.701629862
+P        2.632793240   1.657298618   3.577572239
+P        0.380357233   1.657306440  10.922906888
+P       -0.387681529   1.657302732   8.798806756
+P        1.862126466   0.001514989  10.922946172
+P        2.630243485   0.001519962   8.798872307
+K_POINTS automatic
+10   14    1   0   0   0
