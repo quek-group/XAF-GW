@@ -18,7 +18,7 @@ BerkeleyGW, Copyright (c) 2011, The Regents of the University of California, thr
 
 Work done for this code was performed in the National University of Singapore (NUS). We ask that users of the XAF-GW method or of this code should cite the following reference:
 
-arXiv:1903.01847 [cond-mat.mtrl-sci]
+J. Chem. Theory Comput. 2019, 15, 6, 3824-3835
 
 If the BerkeleyGW code is used in conjunction with the XAF-GW method, please also cite the appropriate references for the BerkeleyGW code.
 
