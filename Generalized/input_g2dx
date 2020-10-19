@@ -2,3 +2,8 @@
 .true.
 .true. 
 2
+
+!p q n1 n2 m1 m2; see input_findq
+!supercell is metal
+!unitcell is metal
+!nspin
