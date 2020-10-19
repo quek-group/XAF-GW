@@ -20,6 +20,11 @@ Work done for this code was performed in the National University of Singapore (N
 
 J. Chem. Theory Comput. 2019, 15, 6, 3824-3835
 
+A generalized version is uploaded on 19-Oct-2020 (see /XAF-GW/Generalized/ folder). To use this version please cite the following reference:
+
+J. Phys. Chem. Lett. 2020, Accepted (DOI: 10.1021/acs.jpclett.0c02944)
+
+
 If the BerkeleyGW code is used in conjunction with the XAF-GW method, please also cite the appropriate references for the BerkeleyGW code.
 
 Author: Xuan Fengyuan (c2dxf@nus.edu.sg)
