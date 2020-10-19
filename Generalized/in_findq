@@ -1,0 +1,3 @@
+6 6 2 -1 1 3 0.001 0.0  ! p, q, n1,n2,m1,m2,scqx,scqy
+ !n1 n2 m1 m2 expansion coefficient; supercel q-mesh = p x q
+ !scqx, scqy is super cell q0 coordinate
