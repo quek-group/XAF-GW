@@ -9,7 +9,7 @@ Full-sigma
 
 The Add-chi method computes the chi matrix for the heterostructure (HS) as the sum of the chi matrices from individual components. This is shown to work even when bonding and anti-bonding states form between the separate components (JCTC).
 
-The eXpand-chi method obtains the chi matrix of the supercell from the chi matrix of a unit cell.
+The eXpand-chi method obtains the chi matrix of the 2-dimensional supercell from the chi matrix of a unit cell.
 
 The code provided here is based on BerkeleyGW/1.2.0, and routines for reading the chi matrices have been obtained from the BerkeleyGW code. However, this code is general and can be easily modified for other GW codes.
 
