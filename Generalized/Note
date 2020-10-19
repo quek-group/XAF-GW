@@ -24,6 +24,9 @@ and expand it to general super cell with a regular general q mesh
  Unit cell lattice: a1 a2;  and reciprocal lattice: b1 b2
  Super cell lattice: A1 = n1 * a1 + n2 * a2   
                      A2 = m1 * a1 + m2 * a2 
+ Note that in the code g2dx.f90, the determinant of the supercell matrix, n1*m2-n2*m1, needs to be a positive number. 
+ So be careful to choose a positive determinant supercell matrix, otherwise g2dx.f90 will report error.
+ 
  and reciprocal lattice: B1 = ( m2 * b1 - m1 * b2 )/(n1m2-n2m1)
                          B2 = (-n2 * b1 + n1 * b2 )/(n1m2-n2m1)
  b1 = n1 * B1 + m1 * B2
