@@ -1,4 +1,4 @@
-Example: calculation of HOMO LUMO gap of benzene on MoS2 (3x3 supercell)
+Example: calculation of HOMO LUMO gap of benzene on MoS2 (3x3 supercell), using the code package in XAF-GW/MxM_supercell/
 Instructions for each folder (run the code in the following order):
 QE-bz for mono layer of benzene molecule in supercell
 QE-MoS2 for unit cell MoS2
