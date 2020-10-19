@@ -1,7 +1,7 @@
 eXpandchi-Addchi-Fullsigma (XAF) for GW calculation of large interface system 
 (The current codes are based on BerkeleyGW-1.2.0 package. We assume users are familiar with BerkeleyGW.)
 
-1) eXanpdchi instruction (expandchi.f90): 
+1) eXpandchi instruction (expandchi.f90): 
 
 chi(r,r') = Sum_{qGG'} e^{i(q+G)r} chi(q,G,G') e^{-i(q+G')r'}
           = Sum_{qsGG'} [e^{i(qs+G)r} chi(qs,G,G') e^{-i(qs+G')r'} + Sum_{G_I} e^{i(qs+G_I+G)r} chi(qs+G_I,G,G') e^{-i(qs+G_I+G')r'}]
