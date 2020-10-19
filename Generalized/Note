@@ -1,0 +1,10 @@
+This folder (Generalized) is a generalized version of the XAF code.
+
+1, The expansion code can now expand a unit cell chimat to any supercell.
+2, Can handle nspin=2 system (spin polarized case)
+---------------------------------------
+Generalized expand code (g2dx.f90)
+
+
+---------------------------------------
+Usage:
