@@ -16,11 +16,13 @@ The code provided here is based on BerkeleyGW/1.2.0, and routines for reading th
 The BerkeleyGW/1.2.0 code is licensed under licensed under a free, open source, and permissive 3-clause modified BSD license.
 BerkeleyGW, Copyright (c) 2011, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.
 
-Work done for this code was performed in the National University of Singapore (NUS). We ask that users of the XAF-GW method or of this code should cite the following reference:
+Work done for this code was performed in the National University of Singapore (NUS). 
+
+A simple version for MxM supercell expansion is uploaded to /XAF-GW/MxM_supercell/ folder. We ask that users of the XAF-GW method or of this code should cite the following reference:
 
 J. Chem. Theory Comput. 2019, 15, 6, 3824-3835
 
-A generalized version is uploaded on 19-Oct-2020 (see /XAF-GW/Generalized/ folder). To use this version please cite the following reference:
+A generalized version is uploaded to /XAF-GW/Generalized/ folder. To use this version please cite the following reference:
 
 J. Phys. Chem. Lett. 2020, Accepted (DOI: 10.1021/acs.jpclett.0c02944)
 
