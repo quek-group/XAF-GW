@@ -16,7 +16,7 @@ else                     chi(qs,Gs,Gs') = 0
 
 Thus we have general mapping between the chi matrix element of unit cell and super cell.
 Each q point supercell chi matrix corresponds to several q point unitcell chi matrix (qs+G_I, where G_I makes qs+G_I landed inside unit cell BZ).
-(An example can be found in JPCL)
+(An example can be found in our JPCL paper DOI:10.1021/acs.jpclett.0c02944)
 
 This program (g2dx.f90) reads in polarizability of a 1x1 layer system from chimat1x1
 and expand it to general super cell with a regular general q mesh
