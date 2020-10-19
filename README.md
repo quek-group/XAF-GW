@@ -22,7 +22,7 @@ A simple version for MxM supercell expansion is uploaded to /XAF-GW/MxM_supercel
 
 J. Chem. Theory Comput. 2019, 15, 6, 3824-3835
 
-A generalized version is uploaded to /XAF-GW/Generalized/ folder. To use this version please cite the following reference:
+A generalized version is uploaded to /XAF-GW/General_Supercell/ folder. To use this version please cite the following reference:
 
 J. Phys. Chem. Lett. 2020, Accepted (DOI: 10.1021/acs.jpclett.0c02944)
 
