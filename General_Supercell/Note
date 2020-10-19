@@ -57,7 +57,7 @@ DP_generalfindqmesh.f90:
  Calculate WFNq for epsilon calculation on this qlistshift.
 
  Run like:
- ./DP_generalfindqmesh.x < in_findq > out_findq
+ ./DP_generalfindqmesh.x < input_findq > out_findq
  
 g2dxf.f90
  Input:
