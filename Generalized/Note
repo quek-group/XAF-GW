@@ -45,8 +45,8 @@ Usage:
 
 DP_generalfindqmesh.f90:
  Input: p, q, n1,n2,m1,m2,scqx,scqy
- n1 n2 m1 m2 expansion coefficient; supercel q-mesh = p x q
- scqx, scqy super cell q0
+ !n1 n2 m1 m2 expansion coefficient; supercel q-mesh = p x q
+ !scqx, scqy super cell q0
  
  Output: qlist, qlistshift
  qlist contains the unitcell q-mesh coordinate, remember to replace the gamma point with the q0 point for epsilon.inp.
@@ -62,15 +62,15 @@ g2dxf.f90
  .true.
  .true. 
  2 
- p q n1 n2 m1 m2;
- supercell is metal
- unitcell is metal
- nspin
+ !p q n1 n2 m1 m2;
+ !supercell is metal
+ !unitcell is metal
+ !nspin
  Other inputs:
- chi0mat1x1 (unit cell chi0mat)
- chimat1x1 (unit cell chimat)
- chi0mat_exactmxm (super cell chi0mat, this is to read the header only, so keep minimum))
- chimat_exactmxm (super cell chimat, this is to read the header only, so keeping minimum convergence parameter is enough)
+ chi0mat1x1 !(unit cell chi0mat)
+ chimat1x1 !(unit cell chimat)
+ chi0mat_exactmxm !(super cell chi0mat, this is to read the header only, so keep minimum))
+ chimat_exactmxm !(super cell chimat, this is to read the header only, so keeping minimum convergence parameter is enough)
  
  Output: polarizability of the expanded system is written into file chi0mat_expandmxm
  and compared with chi0mat_exactmxm
@@ -83,9 +83,9 @@ addchi4g2dx.f90
  4   !number total q point (includes q0)
  2   !nspin
  Other inputs:
- chi0mat_bn(layer1)   
- chi0mat_bnG(total chi matrix, only to read in the header, so keep minimum parameter)   
- chi0mat_G (layer2) 
+ chi0mat_bn !(layer1)   
+ chi0mat_bnG !(total chi matrix, only to read in the header, so keep minimum parameter)   
+ chi0mat_G !(layer2) 
  chimat_bn
  chimat_bnG
  chimat_G --> chimat_expandmxm
