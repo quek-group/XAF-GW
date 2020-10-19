@@ -1,0 +1,4 @@
+6 6 2 -1 1 3  !p q n1 n2 m1 m2; see input_findq
+.true.        !supercell is metal
+.true.        !unitcell is metal
+2             !nspin
