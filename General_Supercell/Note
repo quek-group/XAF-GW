@@ -1,4 +1,4 @@
-This folder (XAF-GW/General_Supercell) is a generalized version of the XAF code.
+This folder (/XAF-GW/General_Supercell) is a generalized version of the XAF code in /XAF-GW/MxM_Supercell.
 
 1, The expansion code can now expand a unit cell chimat to any supercell.
 2, Can handle nspin=2 system (spin polarized case)
