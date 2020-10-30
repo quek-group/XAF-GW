@@ -653,7 +653,7 @@ icount = 0
         write(6,'(3f10.6)') qpt1(:,iqs)
 icount = icount + nmtx2(indp(iq))*nmtx2(indp(iq))
 ! Nic enable omp
-!$omp parallel do default(private) shared(chimat_ggp,spchimat_ggp,chimat2_ggp,spchimat2_ggp,nspin,iq,nmtx1,nmtx2,indp,gvec1,gvec2,isrtx1,isrtx2,n1,n2,m1,m2,qpt2)
+!$omp parallel do default(private) shared(chimat_ggp,spchimat_ggp,chimat2_ggp,spchimat2_ggp,nspin,iq,iqs,nmtx1,nmtx2,indp,gvec1,gvec2,isrtx1,isrtx2,n1,n2,m1,m2,qpt2,qpt1)
       do igp = 1,nmtx2(indp(iq))
         do ig = 1,nmtx2(indp(iq)) !nmtx2
            qkv(:) = gvec2%components(:,isrtx2(ig,indp(iq)))
