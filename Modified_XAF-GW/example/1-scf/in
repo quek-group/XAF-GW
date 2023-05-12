@@ -1,0 +1,53 @@
+&control
+   prefix = 'slab'
+   calculation = 'scf'
+   restart_mode = 'from_scratch'
+!   restart_mode = 'restart'
+   wf_collect = .true.
+!   tstress = .true.
+!   tprnfor = .true.
+   outdir = './'
+   verbosity = 'high'
+!   wfcdir = './outputs'
+   pseudo_dir = '/home/nlqcheng/pseudo/'
+   nstep = 2000
+   etot_conv_thr=1.0D-5
+   forc_conv_thr=1.0D-4
+/
+&system
+   ibrav = 0
+   nat = 4
+   ntyp = 1
+   ecutwfc = 60.0
+/
+&electrons
+   electron_maxstep = 200
+   conv_thr = 1.0d-6
+   mixing_mode = 'plain'
+   mixing_beta = 0.2
+!   mixing_ndim = 8
+   diagonalization = 'david'
+!   diago_david_ndim = 4
+!   diago_full_acc = .true.
+!   startingpot = 'file'
+/
+&ions
+      ion_dynamics='bfgs'
+      upscale=100
+/
+ATOMIC_SPECIES
+   C    12.011    C.upf
+
+ATOMIC_POSITIONS {crystal}
+C     0.499999805         0.333333343       0.246407353  
+C     0.000000000         0.833333371       0.246407353  
+C     0.499999903         0.000000000       0.246407353  
+C     0.000000000         0.500000000       0.246407353  
+CELL_PARAMETERS angstrom 
+        2.4488213062         0.0000000000         0.0000000000
+        0.0000000000         4.2414817810         0.0000000000
+        0.0000000000         0.0000000000        23.6359004974
+
+K_POINTS automatic
+24   12   1   0   0   0
+

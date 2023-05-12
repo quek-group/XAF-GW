@@ -1,0 +1,58 @@
+
+     Program PW2BGW v.6.4.1 starts on 19Apr2021 at 11:44:59 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on      24 processor cores
+     Number of MPI processes:                24
+     Threads/MPI process:                     1
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =      24
+
+     Reading data from directory:
+     ./slab.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation      = PBE ( 1  4  3  4 0 0)
+     Using LIBXC version       =    4   3   4
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          29      29     10                 4329     4329     908
+     Max          30      30     11                 4356     4356     935
+     Sum         713     713    247               104149   104149   22009
+ 
+     Generating pointlists ...
+     new r_m :   0.2382 (alat units)  1.1021 (a.u.) for type    1
+
+     NLCC is present
+
+     call write_vxc_g
+     done write_vxc_g
+
+     call write_rhog
+     done write_rhog
+
+ 
+     write_rhog   :      0.01s CPU      0.18s WALL (       1 calls)
+     write_vxc_g  :     81.79s CPU     88.88s WALL (       1 calls)
+ 
+     PW2BGW       :   1m50.27s CPU   9m18.34s WALL
+
+ 
+   This run was terminated on:  11:54:18  19Apr2021            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=
