@@ -1,0 +1,24 @@
+mkdir 2a-wfn/slab.save
+cd 2a-wfn/slab.save
+ln -s ../../1-scf/slab.save/data-file-schema.xml
+ln -s ../..//1-scf/slab.save/charge-density.dat
+
+cd ../../
+mkdir 2b-wfn_q/slab.save
+cd 2b-wfn_q/slab.save
+ln -s ../../1-scf/slab.save/data-file-schema.xml
+ln -s ../..//1-scf/slab.save/charge-density.dat
+
+cd ../../
+mkdir 2c-bands/slab.save
+cd 2c-bands/slab.save
+ln -s ../../1-scf/slab.save/data-file-schema.xml
+ln -s ../..//1-scf/slab.save/charge-density.dat
+
+cd ../../
+cd 3a-epsilon
+ln -sf ../2a-wfn/wfn.cplx.red WFN
+ln -sf ../2a-wfn/wfn.cplx.red.h5 WFN.h5
+ln -sf ../2b-wfn_q/wfn.cplx.red WFNq
+ln -sf ../2b-wfn_q/wfn.cplx.red.h5 WFNq.h5
+

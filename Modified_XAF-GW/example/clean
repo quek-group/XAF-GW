@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -r */slab* */q*
+rm */*cplx* */*h5 */*out */*log */*dat */*mat */*pdf
+rm */RHO */VXC */WFN*
