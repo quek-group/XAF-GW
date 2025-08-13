@@ -1,0 +1,26 @@
+#!/bin/bash
+#BSUB -q scalable
+#BSUB -n 24
+#BSUB -R "span[ptile=24]"
+#BSUB -R "rusage[mem=250000]"
+#BSUB -a openmpi
+#BSUB -W 72:00
+#BSUB -J "qe"
+#BSUB -o lsf%J.o
+#BSUB -e lsf%J.e
+module load intel/2019b
+export LOCAL_SCRATCHDIR=/scratch/tmp_$LSB_JOBID
+export WDIR=$(pwd)
+export OMP_NUM_THREADS=1
+export NK=2
+# you might need to compile your own QE if needed
+QE_BIN="/home/e0227689/software/qe-6.4.1-compile/bin/"
+cd $WDIR/1-scf
+mpirun -np $LSB_DJOB_NUMPROC $QE_BIN/pw.x -nk $NK -in in > out
+cd $WDIR/2a-wfn
+mpirun -np $LSB_DJOB_NUMPROC $QE_BIN/pw.x -nk $NK -in in > out
+mpirun -np $LSB_DJOB_NUMPROC $QE_BIN/pw2bgw.x -nk $NK -in pw2bgw.in.red > pw2bgw.out.red
+cd $WDIR/2b-wfn_q
+mpirun -np $LSB_DJOB_NUMPROC $QE_BIN/pw.x -nk $NK -in in > out
+mpirun -np $LSB_DJOB_NUMPROC $QE_BIN/pw2bgw.x -nk $NK -in pw2bgw.in.red > pw2bgw.out.red
+

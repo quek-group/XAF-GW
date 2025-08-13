@@ -1,0 +1,9 @@
+#!/bin/bash
+export wdir=$(pwd)
+module load BerkeleyGW
+
+cd $wdir/2a-wfn
+wfn2hdf.x BIN wfn.cplx.red wfn.cplx.red.h5
+cd $wdir/2b-wfn_q
+wfn2hdf.x BIN wfn.cplx.red wfn.cplx.red.h5
+

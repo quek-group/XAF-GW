@@ -1,0 +1,230 @@
+--- qe-6.4.1/PP/src/pw2bgw.f90.orig	2019-09-27 12:18:45.317105405 +0800
++++ qe-6.4.1/PP/src/pw2bgw.f90	2019-10-25 13:23:11.020895238 +0800
+@@ -149,6 +149,12 @@
+   logical :: vkbg_flag
+   character ( len = 256 ) :: vkbg_file
+   character ( len = 256 ) :: outdir
++  ! Nic
++  logical :: use_window
++  real (DP) :: window
++  logical :: use_bands
++  integer :: ct_band_min
++  integer :: ct_band_max
+ 
+   NAMELIST / input_pw2bgw / prefix, outdir, &
+     real_or_complex, symm_type, wfng_flag, wfng_file, wfng_kgrid, &
+@@ -157,7 +163,9 @@
+     rhog_nvmin, rhog_nvmax, vxcg_flag, vxcg_file, vxc0_flag, vxc0_file, &
+     vxc_flag, vxc_file, vxc_integral, vxc_diag_nmin, vxc_diag_nmax, &
+     vxc_offdiag_nmin, vxc_offdiag_nmax, vxc_zero_rho_core, &
+-    vscg_flag, vscg_file, vkbg_flag, vkbg_file
++    vscg_flag, vscg_file, vkbg_flag, vkbg_file, use_window, window, &
++    use_bands, ct_band_min, ct_band_max
++! Nic    vscg_flag, vscg_file, vkbg_flag, vkbg_file
+ 
+   integer :: ii, ios
+   character ( len = 256 ) :: output_file_name
+@@ -208,6 +216,12 @@
+   vscg_file = 'VSC'
+   vkbg_flag = .FALSE.
+   vkbg_file = 'VKB'
++  ! Nic
++  use_window = .FALSE.
++  window = 0.0D0
++  use_bands = .FALSE.
++  ct_band_min = 0
++  ct_band_max = 0
+ 
+   IF ( ionode ) THEN
+     CALL input_from_file ( )
+@@ -266,6 +280,12 @@
+   CALL mp_bcast ( vscg_file, ionode_id, world_comm )
+   CALL mp_bcast ( vkbg_flag, ionode_id, world_comm )
+   CALL mp_bcast ( vkbg_file, ionode_id, world_comm )
++  ! Nic
++  CALL mp_bcast ( use_window , ionode_id, world_comm )
++  CALL mp_bcast ( window     , ionode_id, world_comm )
++  CALL mp_bcast ( use_bands  , ionode_id, world_comm )
++  CALL mp_bcast ( ct_band_min, ionode_id, world_comm )
++  CALL mp_bcast ( ct_band_max, ionode_id, world_comm )
+ 
+   CALL read_file ( )
+ 
+@@ -296,7 +316,9 @@
+     CALL start_clock ( 'write_wfng' )
+     CALL write_wfng ( output_file_name, real_or_complex, symm_type, &
+       wfng_kgrid, wfng_nk1, wfng_nk2, wfng_nk3, wfng_dk1, wfng_dk2, &
+-      wfng_dk3, wfng_occupation, wfng_nvmin, wfng_nvmax )
++      wfng_dk3, wfng_occupation, wfng_nvmin, wfng_nvmax , use_window, window, &
++      use_bands, ct_band_min, ct_band_max)
++! Nic     wfng_dk3, wfng_occupation, wfng_nvmin, wfng_nvmax )
+     CALL stop_clock ( 'write_wfng' )
+     IF ( ionode ) WRITE ( 6, '(5x,"done write_wfng",/)' )
+   ENDIF
+@@ -407,7 +429,9 @@
+ 
+ SUBROUTINE write_wfng ( output_file_name, real_or_complex, symm_type, &
+   wfng_kgrid, wfng_nk1, wfng_nk2, wfng_nk3, wfng_dk1, wfng_dk2, &
+-  wfng_dk3, wfng_occupation, wfng_nvmin, wfng_nvmax )
++  wfng_dk3, wfng_occupation, wfng_nvmin, wfng_nvmax , use_window, window, &
++  use_bands, ct_band_min, ct_band_max)
++! Nic  wfng_dk3, wfng_occupation, wfng_nvmin, wfng_nvmax )
+ 
+   USE cell_base, ONLY : omega, alat, tpiba, tpiba2, at, bg, ibrav
+   USE constants, ONLY : pi, tpi, eps6
+@@ -450,6 +474,12 @@
+   logical, intent (in) :: wfng_occupation
+   integer, intent (in) :: wfng_nvmin
+   integer, intent (in) :: wfng_nvmax
++ ! Nic
++  logical, intent (in) :: use_window
++  real (DP), intent (in) :: window 
++  logical, intent (in) :: use_bands
++  integer, intent (in) :: ct_band_min
++  integer, intent (in) :: ct_band_max
+ 
+   character :: cdate*9, ctime*9, sdate*32, stime*32, stitle*32
+   logical :: proc_wf, bad_kgrid
+@@ -481,6 +511,11 @@
+ 
+   INTEGER, EXTERNAL :: atomic_number, global_kpoint_index
+ 
++! Nic
++  real (DP), allocatable :: vbm(:), cbm(:)
++  integer , allocatable :: nb_min(:), nb_max(:)
++  real(DP) :: ryd = 13.60569253_dp, emiddle
++  integer :: nb_mod
+   IF ( real_or_complex .EQ. 1 .OR. nspin .GT. 1 ) THEN
+     proc_wf = .TRUE.
+   ELSE
+@@ -733,12 +768,105 @@
+ 
+   CALL cryst_to_cart ( nk_g / ns, xk, at, - 1 )
+ 
++! =============================================================================
++! Nic: default without my additions
++  ALLOCATE(nb_min (nk_g))
++  ALLOCATE(nb_max (nk_g))
++  nb_min(:) = 1
++  nb_max(:) = nb
++  nb_mod = nb
++
++  IF (use_bands .AND. use_window) THEN
++    CALL errore ( 'write_wfng', 'use_bands and use_bands cannot be both true!!', 999 )
++  ENDIF
++
++  IF (use_bands) THEN
++  ! Force the range of bands to be written out - this is required to keep number of
++  ! valence bands consistent in WFN and WFNq
++!    ALLOCATE(nb_min (1))
++!    ALLOCATE(nb_max (1))
++    nb_min(:) = ct_band_min
++    nb_max(:) = ct_band_max
++
++    ! Modify ifmax
++    DO ik = 1, nk_g
++      ifmax(ik) = ifmax(ik) - minval(nb_min) + 1
++    ENDDO
++
++    nb_mod = maxval( nb_max ) - minval ( nb_min ) + 1
++    WRITE( 6, * ) "Using: use_bands"
++    WRITE( 6, * ) "nb_min:", minval ( nb_min )
++    WRITE( 6, * ) "nb_max:", maxval ( nb_max )
++  ENDIF
++
++  IF (use_window) THEN
++  ! Nic: Easiest way is to only write valence states that are within Fermi energy window
++  ! Determine the vbm and cbm as in BGW and find the corresponding index.
++  ! To change: nb -> nb_modified
++  ! To add: nb_min. In principle for different ik, nb_min should be different? Too troublesome
++    ALLOCATE(vbm (nk_g))
++    ALLOCATE(cbm (nk_g))
++    vbm = 0 ; cbm = 0 ; nb_min = 0 ; nb_max = 0
++    DO ik = 1, nk_g
++      vbm(ik) = maxval(et_g(1:ifmax(ik), ik))
++      cbm(ik) = minval(et_g(ifmax(ik)+1:nb, ik))
++    ENDDO
++    emiddle = (maxval(vbm) + minval(cbm)) / 2.0d0
++    write(6,*) emiddle
++    IF( ionode ) THEN
++      WRITE(6, 901) 'Valence max   ', maxval(vbm)*ryd
++      WRITE(6, 901) 'Conduction min', minval(cbm)*ryd
++      WRITE(6, 901) 'Middle energy ', emiddle*ryd
++  901  FORMAT(1x,a,f0.6,' eV')
++    ENDIF
++  
++  ! Search for band window
++    DO ik = 1, nk_g
++  
++      ib1: DO ib = ifmax(ik), 1, -1
++        IF ( ( emiddle - et_g ( ib, ik ) ) .lt. window/ryd ) THEN
++          CYCLE 
++        ELSE
++          nb_min(ik) = ib
++          EXIT ib1
++        ENDIF
++      ENDDO ib1
++  
++      ib2: DO ib = ifmax(ik) + 1, nb
++        IF ( ( et_g ( ib, ik ) - emiddle ) .lt. window/ryd ) THEN
++          CYCLE 
++        ELSE
++          nb_max(ik) = ib
++          EXIT ib2
++        ENDIF
++      ENDDO ib2
++  
++    ENDDO
++    
++  ! Modify ifmax
++    DO ik = 1, nk_g
++      ifmax(ik) = ifmax(ik) - minval(nb_min) + 1
++    ENDDO
++  
++    WRITE(6,*) (nb_min(ik), ik = 1, nk_g)
++    nb_mod = maxval( nb_max ) - minval ( nb_min ) + 1
++    WRITE( 6, * ) "Using: use_window"
++    WRITE( 6, * ) "window (eV):", window
++    WRITE( 6, * ) "nb_min:", minval ( nb_min )
++    WRITE( 6, * ) "nb_max:", maxval ( nb_max )
++
++  ENDIF
++
++! End Nic
++! =============================================================================
++
+   IF ( ionode ) THEN
+     OPEN ( unit = unit, file = TRIM ( output_file_name ), &
+       form = 'unformatted', status = 'replace' )
+     WRITE ( unit ) stitle, sdate, stime
+     WRITE ( unit ) ns, ng_g, ntran, cell_symmetry, nat, ecutrho, &
+-      nk_g / ns, nb, npwx_g, ecutwfc
++      nk_g / ns, nb_mod, npwx_g, ecutwfc
++! Nic     nk_g / ns, nb, npwx_g, ecutwfc
+     IF ( wfng_kgrid ) THEN
+       WRITE ( unit ) dfftp%nr1, dfftp%nr2, dfftp%nr3, wfng_nk1, wfng_nk2, wfng_nk3, &
+         wfng_dk1, wfng_dk2, wfng_dk3
+@@ -758,8 +886,10 @@
+     WRITE ( unit ) ( ( xk ( id, ik ), id = 1, nd ), ik = 1, nk_g / ns )
+     WRITE ( unit ) ( ifmin ( ik ), ik = 1, nk_g )
+     WRITE ( unit ) ( ifmax ( ik ), ik = 1, nk_g )
+-    WRITE ( unit ) ( ( et_g ( ib, ik ), ib = 1, nb ), ik = 1, nk_g )
+-    WRITE ( unit ) ( ( wg_g ( ib, ik ), ib = 1, nb ), ik = 1, nk_g )
++! Nic   WRITE ( unit ) ( ( et_g ( ib, ik ), ib = 1, nb ), ik = 1, nk_g )
++! Nic   WRITE ( unit ) ( ( wg_g ( ib, ik ), ib = 1, nb ), ik = 1, nk_g )
++    WRITE ( unit ) ( ( et_g ( ib, ik ), ib = minval(nb_min), maxval(nb_max) ), ik = 1, nk_g )
++    WRITE ( unit ) ( ( wg_g ( ib, ik ), ib = minval(nb_min), maxval(nb_max) ), ik = 1, nk_g )
+     WRITE ( unit ) nrecord
+     WRITE ( unit ) ng_g
+     WRITE ( unit ) ( ( g_g ( id, ig ), id = 1, nd ), ig = 1, ng_g )
+@@ -923,7 +1053,9 @@
+         ENDDO
+ #endif
+       ELSE
+-        IF ( ionode ) THEN
++! Nic        IF ( ionode ) THEN
++        IF ( ionode .AND. ( ib .ge. minval(nb_min) ) .AND. ( ib .le. maxval(nb_max) )) THEN
++
+           WRITE ( unit ) nrecord
+           WRITE ( unit ) ngk_g ( ik )
+           WRITE ( unit ) ( wfng ( ig ), ig = 1, igwx )

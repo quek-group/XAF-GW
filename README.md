@@ -13,6 +13,8 @@ The eXpand-chi method obtains the chi matrix of the 2-dimensional supercell from
 
 The code provided here is based on BerkeleyGW/1.2.0, and routines for reading the chi matrices have been obtained from the BerkeleyGW code. However, this code is general and can be easily modified for other GW codes.
 
+# Usage and copyright
+
 The BerkeleyGW/1.2.0 code is licensed under licensed under a free, open source, and permissive 3-clause modified BSD license.
 BerkeleyGW, Copyright (c) 2011, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.
 
@@ -24,8 +26,11 @@ J. Chem. Theory Comput. 2019, 15, 6, 3824-3835
 
 A generalized version is uploaded to /XAF-GW/General_Supercell/ folder. To use this version please cite the following reference:
 
-J. Phys. Chem. Lett. 2020, Accepted (DOI: 10.1021/acs.jpclett.0c02944)
+J. Phys. Chem. Lett. 2020, 11, 21, 9358−9363 (DOI: 10.1021/acs.jpclett.0c02944)
 
+We have also developed a modified version of XAF-GW that can deal with interfacial charge transfer. More information can be found in folder Modified_XAF-GW. Please cite the following reference:
+
+J. Phys. Chem. Lett. 2021, 12, 36, 8841–8846
 
 If the BerkeleyGW code is used in conjunction with the XAF-GW method, please also cite the appropriate references for the BerkeleyGW code.
 
